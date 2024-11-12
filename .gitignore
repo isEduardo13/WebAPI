@@ -1,0 +1,52 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Rider files
+.idea/
+*.sln.iml
+
+# Resharper files
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# User-specific files
+*.userprefs
+*.pidb
+
+# Visual Studio Code files
+.vscode/
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Dependency folders
+**/node_modules/
+
+# Logs
+*.log
+
+# Config files
+appsettings.Development.json
+appsettings.Local.json
+
+# Publish output
+publish/
+
+# Docker files
+.docker/
+
+# Temporary files
+~$*
+*.tmp
+*.bak
+
+# Others
+*.DS_Store
+*.orig
