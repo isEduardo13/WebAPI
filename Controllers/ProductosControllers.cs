@@ -11,7 +11,7 @@ using WebAPI.Dtos;
 namespace WebAPI.Controllers
 {
 
-    [ApiController]
+    
     [Route("productos")]
     public class ProductosController : ControllerBase
     {

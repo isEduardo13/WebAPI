@@ -11,6 +11,8 @@ using WebAPI.Dtos;
 
 namespace WebAPI.Controllers
 {
+
+    [Route("encargadostienda")]
     public class EncargadosTiendaController : Controller
     {
         private readonly Jq4bContext bd;
@@ -21,8 +23,7 @@ namespace WebAPI.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> GetEncargadosTienda()
-        {
+        public async Task<IActionResult> GetEncargadosTienda(){
             var encargados = await bd.Encargadotienda.ToListAsync();
             return Ok(mapper.Map<List<EncargadoTiendaDTO>>(encargados));
         }
