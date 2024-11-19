@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
             return Ok(mapper.Map<List<ProductoDTO>>(productos));
         }
         [HttpPost]
-        public async Task<IActionResult> PostProducto(ProductoCreateDTO producto){
+        public async Task<IActionResult> PostProducto([FromBody]ProductoCreateDTO producto){
            Productos p = new Productos{
                NombreProducto = producto.NombreProducto,
                Stock = producto.Stock,
