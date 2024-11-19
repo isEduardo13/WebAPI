@@ -12,7 +12,7 @@ using WebAPI.Dtos;
 namespace WebAPI.Controllers
 {
 
-    [Route("encargadostienda")]
+    [Route("EncargadosTienda")]
     public class EncargadosTiendaController : Controller
     {
         private readonly Jq4bContext bd;
@@ -26,6 +26,12 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetEncargadosTienda(){
             var encargados = await bd.Encargadotienda.ToListAsync();
             return Ok(mapper.Map<List<EncargadoTiendaDTO>>(encargados));
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEncargadoTiendaById(short id)
+        {
+            var encargado = await bd.Encargadotienda.FindAsync(id);
+            return Ok(mapper.Map<EncargadoTiendaDTO>(encargado));
         }
         [HttpPost]
         public async Task<IActionResult> PostEncargadoTienda([FromBody] EncargadoTiendaCreateDTO encargado)
