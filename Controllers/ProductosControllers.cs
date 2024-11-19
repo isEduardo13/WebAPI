@@ -22,6 +22,11 @@ namespace WebAPI.Controllers
             this.bd = bd;
             this.mapper = mapper;
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProducto(int id){
+            var producto = await bd.Productos.FindAsync(id);
+            return Ok(mapper.Map<ProductoDTO>(producto));
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetProductos(){

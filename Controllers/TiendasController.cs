@@ -21,6 +21,16 @@ namespace WebAPI.Controllers
             this.bd = bd;
             this.mapper = mapper;
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTienda(short id)
+        {
+            var tienda = await bd.Tiendas.FindAsync(id);
+            if (tienda == null)
+            {
+                return NotFound();
+            }
+            return Ok(mapper.Map<TiendaDTO>(tienda));
+        }
         [HttpGet]
         public async Task<IActionResult> GetTiendas()
         {
