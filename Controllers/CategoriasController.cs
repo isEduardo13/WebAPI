@@ -30,6 +30,13 @@ namespace WebAPI.Controllers
             var categorias = await bd.Categorias.ToListAsync();
             return Ok(mapper.Map<List<CategoriaDTO>>(categorias));
         }
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoriaById(sbyte id)
+        {
+            var categoria = await bd.Categorias.FindAsync(id);
+            return Ok(mapper.Map<CategoriaDTO>(categoria));
+        }
 
         [HttpPost]
         public async Task<IActionResult> PostCategoria([FromBody]CategoriaCreateDTO categoria)
@@ -44,7 +51,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutCategoria([FromQuery]sbyte Id, [FromBody]CategoriaCreateDTO categoria)
+        public async Task<IActionResult> PutCategoria( [FromQuery]sbyte Id, [FromBody]CategoriaCreateDTO categoria)
         {   Categorias c = new Categorias
             {
                 Id = Id,
