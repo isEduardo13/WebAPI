@@ -122,6 +122,7 @@ public partial class Jq4bContext : DbContext
 
             entity.HasIndex(e => e.IdCategoria, "fk_productos_categorias");
 
+            entity.Property(e => e.Imagen).HasMaxLength(255);
             entity.Property(e => e.NombreProducto)
                 .HasMaxLength(100)
                 .HasColumnName("Nombre_Producto");

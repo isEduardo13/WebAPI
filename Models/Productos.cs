@@ -15,6 +15,8 @@ public partial class Productos
 
     public sbyte IdCategoria { get; set; }
 
+    public string? Imagen { get; set; }
+
     public virtual ICollection<Detalleventas> Detalleventas { get; set; } = new List<Detalleventas>();
 
     public virtual Categorias IdCategoriaNavigation { get; set; } = null!;

@@ -16,5 +16,7 @@ namespace WebAPI.Dtos
         public decimal Precio { get; set; }
 
         public sbyte IdCategoria { get; set; }
+
+        public string? Imagen { get; set; }
     }
 }
