@@ -23,6 +23,12 @@ namespace WebAPI.Controllers
             this.bd = bd;
             this.mapper = mapper;
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRolById(sbyte id)
+        {
+            var rol = await bd.Roles.FindAsync(id);
+            return Ok(mapper.Map<RolDTO>(rol));
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetRoles()

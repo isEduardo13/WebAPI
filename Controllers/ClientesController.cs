@@ -22,7 +22,12 @@ namespace WebAPI.Controllers
             this.bd = bd;
             this.mapper = mapper;
         }
-
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClienteById(int id)
+        {
+            var cliente = await bd.Clientes.FindAsync(id);
+            return Ok(mapper.Map<ClienteDTO>(cliente));
+        }
         [HttpGet]
         public async Task<IActionResult> GetClientes()
         {

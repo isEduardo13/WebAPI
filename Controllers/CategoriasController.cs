@@ -24,18 +24,17 @@ namespace WebAPI.Controllers
 
 
         }
-        [HttpGet]
-        public async Task<IActionResult> GetCategorias()
-        {
-            var categorias = await bd.Categorias.ToListAsync();
-            return Ok(mapper.Map<List<CategoriaDTO>>(categorias));
-        }
-        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategoriaById(sbyte id)
         {
             var categoria = await bd.Categorias.FindAsync(id);
             return Ok(mapper.Map<CategoriaDTO>(categoria));
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetCategorias()
+        {
+            var categorias = await bd.Categorias.ToListAsync();
+            return Ok(mapper.Map<List<CategoriaDTO>>(categorias));
         }
 
         [HttpPost]

@@ -25,6 +25,12 @@ namespace WebAPI.Controllers
             this.mapper = mapper;
             
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDetalleVentaById(int id)
+        {
+            var detalleventa = await bd.Detalleventas.FindAsync(id);
+            return Ok(mapper.Map<DetalleVentaDTO>(detalleventa));
+        }
         [HttpGet]
         public async Task<IActionResult> GetDetalleVentas()
         {

@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
             this.mapper = mapper;
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTienda(short id)
+        public async Task<IActionResult> GetTiendaById(short id)
         {
             var tienda = await bd.Tiendas.FindAsync(id);
             if (tienda == null)
