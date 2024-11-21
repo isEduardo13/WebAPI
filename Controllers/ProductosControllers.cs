@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPI.Dtos;
+using WebAPI.services;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 
 namespace WebAPI.Controllers
@@ -18,9 +20,12 @@ namespace WebAPI.Controllers
         private readonly Jq4bContext bd;
         private readonly IMapper mapper;
 
-        public ProductosController (Jq4bContext bd, IMapper mapper){
+        private readonly IAlmacenamiento almacenamiento;
+
+        public ProductosController (Jq4bContext bd, IMapper mapper, IAlmacenamiento almacenamiento){
             this.bd = bd;
             this.mapper = mapper;
+            this.almacenamiento = almacenamiento;
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductoById(int id){
@@ -34,13 +39,21 @@ namespace WebAPI.Controllers
             return Ok(mapper.Map<List<ProductoDTO>>(productos));
         }
         [HttpPost]
-        public async Task<IActionResult> PostProducto([FromBody]ProductoCreateDTO producto){
+        
+        public async Task<IActionResult> PostProducto([FromForm]ProductoCreateDTO producto){
+            string ruta = await almacenamiento.AlmacenamientoImagen("productos",producto.Imagen!);
+            
+
            Productos p = new Productos{
                NombreProducto = producto.NombreProducto,
                Stock = producto.Stock,
                Precio = producto.Precio,
-               IdCategoria = producto.IdCategoria
+               IdCategoria = producto.IdCategoria,
+               Imagen = ruta
+                
            };
+          
+
               await bd.Productos.AddAsync(p);
                 await bd.SaveChangesAsync();
                 return Ok();

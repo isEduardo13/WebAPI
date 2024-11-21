@@ -12,7 +12,7 @@ namespace WebAPI.Dtos
         public int Stock { get; set; }
 
         public decimal Precio { get; set; }
-        public string? Imagen { get; set; }
+        public IFormFile? Imagen { get; set; }
 
         public sbyte IdCategoria { get; set; }
 

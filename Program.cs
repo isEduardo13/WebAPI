@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Models;
+using WebAPI.services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(cors=> { cors.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
 });
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<IAlmacenamiento, AlmacenamientoLocal>();
 
 var app = builder.Build();
 
@@ -26,6 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
